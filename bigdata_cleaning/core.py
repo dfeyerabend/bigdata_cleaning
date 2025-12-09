@@ -1,18 +1,22 @@
-import pandas as pd
 
-# Root function
-def check_data(df, engine="duckdb"):
+# Logic for loading check data functions from engines
+def check_data(df, engine="duckdb", custom_numeric_ranges=None):
     if engine == "duckdb":
-        return check_duckdb(df)
+        from .duckdb_engine import check_duckdb
+        return check_duckdb(df, custom_numeric_ranges)
     elif engine == "spark":
-        return check_spark(df)
+        from .spark_engine import check_spark
+        return check_spark(df, custom_numeric_ranges)
     else:
         raise ValueError("Unknown engine")
 
-# Run data check with DuckDB
-def check_duckdb(df):
-    raise NotImplementedError("DuckDB engine not implemented yet")
-
-# Run data check with Pyspark
-def check_spark(df):
-    raise NotImplementedError("Spark engine not implemented yet")
+# Logic for loading fix data functions from engines
+def fix_data(df, engine="duckdb"):
+    if engine == "duckdb":
+        from .duckdb_engine import fix_duckdb
+        return fix_duckdb(df)
+    elif engine == "spark":
+        from .spark_engine import fix_spark
+        return fix_spark(df)
+    else:
+        raise ValueError(f"Unknown engine: {engine}")

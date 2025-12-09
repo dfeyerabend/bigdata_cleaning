@@ -1,10 +1,9 @@
 import duckdb
 
-def check_duckdb(df):
-    #con = duckdb.connect()
-    result = "Initiated duckdb check"
+def check_spark(df):
+    result = "Initiated spark check"
     return result
 
-def fix_duckdb(df):
-    result = "Initiated duckdb fix data"
+def fix_spark(df):
+    result = "Initiated spark fix data"
     return result
